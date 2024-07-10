@@ -1,0 +1,11 @@
+---
+- name: long running playbook
+  hosts: localhost
+  tasks:
+    - name: Infinite loop to run forever
+      shell: |
+        while true; do
+          echo "This playbook is running forever"
+          sleep 10
+        done
+...
