@@ -1,0 +1,12 @@
+---
+- name: Print Hello user
+  hosts: localhost
+  vars:
+    # The username variable will be provided by the survey
+    username: ""
+
+  tasks:
+    - name: Print Hello user
+      ansible.builtin.debug:
+        msg: "Hello {{ username }}"
+...
