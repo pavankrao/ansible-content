@@ -1,12 +1,17 @@
 ---
-- name: Print Hello user
+- name: Greet user
   hosts: localhost
   vars:
     # The username variable will be provided by the survey
     username: ""
 
   tasks:
-    - name: Print Hello user
+    - name: Fail if `username` is not provided
+      ansible.builtin.fail:
+        msg: "The 'username' variable must be provided."
+      when: username == ""
+
+    - name: Greet user
       ansible.builtin.debug:
         msg: "Hello {{ username }}"
 ...
