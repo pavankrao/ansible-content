@@ -1,0 +1,26 @@
+---
+- name: Simple Ansible Playbook with Prints and Intentional Failure
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Print Message 1
+      debug:
+        msg: "First message: Ansible playbook execution started."
+
+    - name: Print Message 2
+      debug:
+        msg: "Second message: Performing some tasks."
+
+    - name: Print Message 3
+      debug:
+        msg: "Third message: Almost done."
+
+    - name: Print Message 4
+      debug:
+        msg: "Fourth message: Preparing to fail."
+
+    - name: Intentional Failure
+      fail:
+        msg: "This is an intentional failure to simulate a task error."
+...
