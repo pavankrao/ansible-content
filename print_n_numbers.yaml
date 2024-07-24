@@ -1,0 +1,11 @@
+---
+- name: Print numbers from 1 to 500
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Print each number
+      debug:
+        msg: "{{ item }}"
+      with_sequence: start=1 end=1000
+...
