@@ -1,0 +1,34 @@
+---
+# Example playbook to test Red Hat certified collection 'ansible.utils'
+# Remote URL: https://console.redhat.com/api/automation-hub/content/published/
+# Activity: Sync 'ansible.utils' collection by loading API token from console.redhat.com
+
+- name: Validate JSON data using ansible.utils
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Validate user data structure
+      ansible.utils.validate:
+        data:
+          name: "John Doe"
+          age: 30
+          email: "john.doe@example.com"
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            age:
+              type: integer
+            email:
+              type: string
+          required: ["name", "age", "email"]
+      register: validation_result
+
+    - name: Display validation result
+      ansible.builtin.debug:
+        msg: >
+          Validation successful: {{ validation_result.valid }}
+          Errors: {{ validation_result.errors }}
+...
