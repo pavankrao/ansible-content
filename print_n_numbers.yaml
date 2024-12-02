@@ -1,14 +1,14 @@
 ---
-- name: "Print numbers from 1 to {{ end_number }}"
+- name: "Print numbers from 1 to {{ change_end_number }}"
   hosts: localhost
   gather_facts: false
   vars:
     # The end_number variable will be provided by the survey
-    end_number: 100
+    change_end_number: 100
 
   tasks:
     - name: Print each number
       debug:
         msg: "{{ item }}"
-      with_sequence: start=1 end={{ end_number }}
+      with_sequence: start=1 end={{ change_end_number }}
 ...
