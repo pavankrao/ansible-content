@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: false
   vars:
-    # The end_number variable will be provided by the survey
+    # The change_end_number variable will be provided by the survey
     change_end_number: 100
 
   tasks:
