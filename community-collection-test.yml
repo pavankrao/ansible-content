@@ -1,0 +1,11 @@
+---
+- name: Blank filesystem signature on /dev/sdb1
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Remove filesystem signature on /dev/sdb1
+      community.general.filesystem:
+        dev: /dev/sdb1
+        state: absent
+...
