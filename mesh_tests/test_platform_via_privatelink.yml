@@ -1,0 +1,29 @@
+--- 
+- name: Test access via PrivateLink
+  hosts: all
+  gather_facts: false
+
+  vars:
+    platform_url: "https://platform.cus-jemarmolm.aws.ansiblecloud.com"
+
+  tasks:
+    - name: Test connectivity to AAP platform URL
+      shell: |
+        curl -vk -o /dev/null --silent --show-error {{ platform_url }} 2>&1 | tee /tmp/curl_output.log
+      register: curl_output
+      changed_when: false
+
+    - name: Assert HTTP 200 status
+      assert:
+        that:
+          - "'HTTP/1.1 200' in curl_output.stdout"
+        fail_msg: "Platform did not return HTTP 200"
+        success_msg: "Platform returned HTTP 200"
+
+    - name: Assert PrivateLink IP used (10.x.x.x)
+      assert:
+        that:
+          - "curl_output.stdout is search('Trying 10\\.')"
+        fail_msg: "Connection did not use PrivateLink IP"
+        success_msg: "Connection used PrivateLink (10.x.x.x)"
+...
