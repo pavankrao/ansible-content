@@ -1,0 +1,31 @@
+---
+- name: Test access via PrivateLink
+  hosts: all
+  gather_facts: false
+
+  vars:
+    platform_url: "https://platform.cus-jemarmolm.aws.ansiblecloud.com"
+
+  tasks:
+    - name: Run curl and show command/output
+      shell: |
+        echo "Running: curl -vk {{ platform_url }}"
+        curl -vk -o /dev/null --silent --show-error {{ platform_url }} 2>&1
+      register: result
+      changed_when: false
+
+    - name: Assert HTTP 200 status
+      assert:
+        that:
+          - "'HTTP/1.1 200' in result.stdout"
+        fail_msg: |
+          Expected: HTTP/1.1 200
+          Actual: {{ result.stdout | regex_search('HTTP/1.1 \\d+', '\\0') }}
+
+    - name: Assert PrivateLink IP used (10.x.x.x)
+      assert:
+        that:
+          - "result.stdout is search('Trying 10\\.')"
+        fail_msg: |
+          Expected: IP starting with 10.x.x.x
+          Actual: {{ result.stdout | regex_search('Trying \\S+', '\\0') }}
