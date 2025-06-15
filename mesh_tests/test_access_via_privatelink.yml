@@ -1,5 +1,5 @@
 ---
-- name: Test access via PrivateLink
+- name: Test AAP Platform access via PrivateLink
   hosts: all
   gather_facts: false
 
@@ -20,7 +20,7 @@
           - "'HTTP/1.1 200' in result.stdout"
         fail_msg: |
           Expected: HTTP/1.1 200
-          Actual: {{ result.stdout | regex_search('HTTP/1.1 \\d+', '\\0') }}
+          Actual: {{ result.stdout | regex_search('HTTP/1.1 \\d+', '\\0') or 'No match found' }}
 
     - name: Assert PrivateLink IP used (10.x.x.x)
       assert:
@@ -28,4 +28,5 @@
           - "result.stdout is search('Trying 10\\.')"
         fail_msg: |
           Expected: IP starting with 10.x.x.x
-          Actual: {{ result.stdout | regex_search('Trying \\S+', '\\0') }}
+          Actual: {{ result.stdout | regex_search('Trying \\S+', '\\0') or 'No match found' }}
+...
