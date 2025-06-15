@@ -14,10 +14,6 @@
       register: result
       changed_when: false
 
-    - name: Show curl output (for debugging)
-      debug:
-        var: result.stdout
-
     - name: Assert HTTP 200 status
       assert:
         that:
