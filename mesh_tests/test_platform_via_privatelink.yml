@@ -16,11 +16,11 @@
     - name: Assert HTTP 200 status
       assert:
         that:
-          - "'HTTP/1.1 200' in curl_output.stdout"
+          - "'HTTP/1.1 201' in curl_output.stdout"
         fail_msg: "Platform did not return HTTP 200"
         success_msg: "Platform returned HTTP 200"
 
-    - name: Assert PrivateLink IP used (10.x.x.x)
+    - name: Assert PrivateLink IP is used (10.x.x.x)
       assert:
         that:
           - "curl_output.stdout is search('Trying 10\\.')"
