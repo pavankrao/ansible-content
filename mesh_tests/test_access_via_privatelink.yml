@@ -17,7 +17,7 @@
     - name: Assert HTTP 200 status
       assert:
         that:
-          - "'HTTP/1.1 201' in result.stdout"
+          - "'HTTP/1.1 200' in result.stdout"
 
     - name: Assert PrivateLink IP used (10.x.x.x)
       assert:
