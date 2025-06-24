@@ -1,10 +1,10 @@
 ---
-- name: Test access via PrivateLink
+- name: Test AAP Platform access via PrivateLink
   hosts: all
   gather_facts: false
 
   vars:
-    platform_url: "https://platform.cus-jemarmolm.aws.ansiblecloud.com"
+    platform_url: "https://platform.cus-jemarmolm.aws.ansiblecloud.com"  # FIXME: default after preprod  is live
 
   tasks:
     - name: Run curl and show command/output
@@ -14,12 +14,12 @@
       register: result
       changed_when: false
 
-    - name: Assert HTTP 200 status
+    - name: Assert HTTP 200 status in response
       assert:
         that:
           - "'HTTP/1.1 200' in result.stdout"
 
-    - name: Assert PrivateLink IP used (10.x.x.x)
+    - name: Assert PrivateLink connection is used (10.x.x.x)
       assert:
         that:
           - "'Trying 10.' in result.stdout"
