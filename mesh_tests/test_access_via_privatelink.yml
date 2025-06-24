@@ -22,5 +22,5 @@
     - name: Assert PrivateLink IP used (10.x.x.x)
       assert:
         that:
-          - "'Trying 10\\' in result.stdout"
+          - "'Trying 10.' in result.stdout"
 ...
