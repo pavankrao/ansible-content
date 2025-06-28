@@ -28,8 +28,6 @@
         that:
           - "'Trying 10.' in result.stdout"
 
----
-
 # Play 2: Test access to Mesh WebSocket endpoints via PrivateLink
 # Test Scenario: Verify Mesh WebSocket access via PrivateLink to mesh-ingress-0 and mesh-ingress-1
 # Expected Result: Successful WebSocket connection to mesh-ingress-0 and mesh-ingress-1 endpoints
