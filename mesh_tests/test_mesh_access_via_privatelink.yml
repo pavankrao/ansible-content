@@ -27,7 +27,7 @@
       when: node_check.failed
 
     - name: Install wscat using npm if not installed
-      command: npm install -g wscat
+      command: npm install --prefix /home/{{ ansible_user }}/.local wscat
       when: node_check.rc == 0
 
     - name: Test connection to mesh-ingress-0
