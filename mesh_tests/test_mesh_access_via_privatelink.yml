@@ -40,6 +40,10 @@
       loop:
         - "{{ mesh_ingress_0_url }}"
 
+    - name: Debug result from mesh-ingress-0
+      debug:
+        var: result_mesh_0
+
     - name: Assert successful connection to mesh-ingress-0
       assert:
         that:
