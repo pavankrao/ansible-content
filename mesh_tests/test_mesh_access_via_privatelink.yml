@@ -1,7 +1,7 @@
 ---
 - name: Test Mesh WebSocket access
   hosts: all
-  gather_facts: false
+  gather_facts: true  # Ensure facts (including ansible_hostname) are gathered
 
   vars:
     mesh_ingress_0_url: "wss://mesh-ingress-0.cus-jemarmolm.aws.ansiblecloud.com"
