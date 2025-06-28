@@ -43,8 +43,8 @@
     - name: Assert successful connection to mesh-ingress-0
       assert:
         that:
-          - "'NodeID' in result_mesh_0.stdout"
-          - "'mesh-ingress-0' in result_mesh_0.stdout"
+          - "'NodeID' in result_mesh_0"
+          - "'mesh-ingress-0' in result_mesh_0"
 
     - name: Test connection to mesh-ingress-1
       shell: |
