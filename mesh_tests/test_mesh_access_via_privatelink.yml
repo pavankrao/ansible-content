@@ -61,14 +61,6 @@
       loop:
         - "{{ mesh_ingress_0_url }}"
 
-    # - name: Debug the command executed and its output (stdout and stderr)
-    #   debug:
-    #     msg: |
-    #       Command executed: "{{ wscat_command }}"
-    #       stdout: "{{ result_mesh_0.stdout }}"
-    #       stderr: "{{ result_mesh_0.stderr }}"
-    #       rc: "{{ result_mesh_0.rc }}"
-
     - name: Assert successful connection to mesh-ingress-0
       assert:
         that:
