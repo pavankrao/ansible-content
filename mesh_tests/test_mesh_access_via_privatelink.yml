@@ -11,7 +11,7 @@
     ca_path: "/etc/receptor/tls/automation-controller-root-ca.crt"
     json_payload: '{"action": "helloWorld"}'
 
-    # wscat command
+    # Define the common wscat command
     wscat_command: "wscat -c {{ item }} --cert {{ cert_path }} --key {{ key_path }} --ca {{ ca_path }} --no-check -w 1 -x '{{ json_payload }}'"
 
   tasks:
@@ -26,11 +26,9 @@
         state: present
       when: node_check.failed
 
-    - name: Install wscat if not installed
-      npm:
-        name: wscat
-        global: yes
-        state: present
+    - name: Install wscat using npm if not installed
+      command: npm install -g wscat
+      when: node_check.rc == 0
 
     - name: Test connection to mesh-ingress-0
       shell: |
