@@ -43,11 +43,6 @@
       command: npm install --prefix /home/{{ ansible_user }}/.local wscat
       when: node_check.rc == 0
 
-    - name: Run wscat command directly (for debugging)
-      command: "{{ wscat_command }}"
-      register: result_direct_command
-      ignore_errors: true
-
     - name: Test connection to mesh-ingress-0
       shell: |
         echo "Running: {{ wscat_command }}"
