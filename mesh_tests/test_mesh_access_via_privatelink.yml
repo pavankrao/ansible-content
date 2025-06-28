@@ -12,7 +12,7 @@
     json_payload: '{\"action\": \"helloWorld\"}'
 
     # Define the common wscat command
-    wscat_command: "wscat -c {{ item }} --cert {{ cert_path }} --key {{ key_path }} --ca {{ ca_path }} --no-check -w 1 -x '{{ json_payload }}'"
+    wscat_command: "sudo $(which wscat) -c {{ item }} --cert {{ cert_path }} --key {{ key_path }} --ca {{ ca_path }} --no-check -w 1 -x '{{ json_payload }}'"
 
   tasks:
     - name: Check if Node.js is installed
