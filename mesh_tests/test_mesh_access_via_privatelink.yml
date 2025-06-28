@@ -9,7 +9,7 @@
     cert_path: "/etc/receptor/tls/{{ ansible_hostname }}.ec2.internal.crt"
     key_path: "/etc/receptor/tls/{{ ansible_hostname }}.ec2.internal.key"
     ca_path: "/etc/receptor/tls/automation-controller-root-ca.crt"
-    json_payload: '{"action": "helloWorld"}'
+    json_payload: '{\"action\": \"helloWorld\"}'
 
     # Define the common wscat command
     wscat_command: "wscat -c {{ item }} --cert {{ cert_path }} --key {{ key_path }} --ca {{ ca_path }} --no-check -w 1 -x '{{ json_payload }}'"
