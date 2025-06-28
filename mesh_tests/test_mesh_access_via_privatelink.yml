@@ -13,7 +13,7 @@
 
     # test command
     wscat_command: >
-      /home/{{ ansible_user }}/.local/bin/wscat
+      sudo $(which wscat)
       -c {{ item }}
       --cert {{ cert_path }}
       --key {{ key_path }}
