@@ -48,14 +48,6 @@
       register: result_direct_command
       ignore_errors: true
 
-    - name: Debug the command executed and its output (stdout and stderr)
-      debug:
-        msg: |
-          Command executed: "{{ wscat_command }}"
-          stdout: "{{ result_direct_command.stdout }}"
-          stderr: "{{ result_direct_command.stderr }}"
-          rc: "{{ result_direct_command.rc }}"
-
     - name: Test connection to mesh-ingress-0
       shell: |
         echo "Running: {{ wscat_command }}"
@@ -65,6 +57,14 @@
       failed_when: false
       loop:
         - "{{ mesh_ingress_0_url }}"
+
+    - name: Debug the command executed and its output (stdout and stderr)
+      debug:
+        msg: |
+          Command executed: "{{ wscat_command }}"
+          stdout: "{{ result_mesh_0.stdout }}"
+          stderr: "{{ result_mesh_0.stderr }}"
+          rc: "{{ result_mesh_0.rc }}"
 
     - name: Assert successful connection to mesh-ingress-0
       assert:
