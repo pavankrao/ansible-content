@@ -73,6 +73,7 @@
       command: node -v
       register: node_check
       ignore_errors: true
+      changed_when: false
 
     - name: Install Node.js if not installed
       dnf:
